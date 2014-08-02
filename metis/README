@@ -1,0 +1,4 @@
+../waf configure --metis-dir=/path/to/metis/include --metis-lib=/path/to/metis/lib
+../waf build
+
+build/run-metis
