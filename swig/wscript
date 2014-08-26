@@ -6,40 +6,28 @@ top = '.'
 out = 'build'
 
 def options(opt):
-	opt.load('g++ python')
+    opt.load('g++ python')
 
 def configure(conf):
-	conf.load('g++ python')
-	conf.check_python_version((2,4,2))
-	conf.check_python_headers()
+    conf.load('g++ python')
+    conf.check_python_version((2,4,2))
+    conf.check_python_headers()
 
-	conf.load('swig')
-	if conf.check_swig_version() < (1, 2, 27):
-		conf.fatal('this swig version is too old')
+    conf.load('swig')
+    if conf.check_swig_version() < (1, 2, 27):
+        conf.fatal('this swig version is too old')
 
 def build(bld):
+    bld(features = 'cxx cxxshlib',
+        source = 'a.cpp',
+        target = 'demo',
+	includes = '.',
+        export_includes = '.', vnum = '1.2.3', name = 'demo')
 
-	# extending
-	#
-	# be careful that the .py produced by swig is mandatory for using the library
-	#
-	# it is possible to disable 'mylib', and to add extend/a.cpp
-	# to the source of extend/python/_test_swig_waf and remove use
-
-	bld(
-		features = 'cxx cxxshlib',
-		source = 'a.cpp',
-		target = 'demo',
-    includes = '.',
-    export_includes = '.',
-		vnum = '1.2.3',
-		name = 'demo')
-
-	bld(
-		features = 'cxx cxxshlib pyext',
-		source = 'demo.i',
-		target = '_demo',
-		swig_flags = '-c++ -python -Wall',
-    includes = '.',
-		vnum = '1.2.3',
-		use  = 'demo')
+    bld(features = 'cxx cxxshlib pyext',
+        source = 'demo.i',
+        target = '_demo',
+        swig_flags = '-c++ -python -Wall',
+        includes = '.',
+        vnum = '1.2.3',
+        use  = 'demo')
