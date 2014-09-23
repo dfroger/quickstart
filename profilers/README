@@ -14,4 +14,4 @@ script:
 
 Profiler results are writter in out/<script-name>/
 
-All the work is done in the current working directory.
+All the work is done in the out directory.
