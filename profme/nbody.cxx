@@ -1,63 +1,118 @@
 #include "nbody.hxx"
 
-/* Gravitationnal force acting on P1 due to P2.
- *
- */
+#include <sstream>
+#include <fstream>
 
-#include <iostream>
 using namespace std;
 
-void
-gravitationnal_force(double m1, double m2, double r1[NDIM], double r2[NDIM], 
-    double softening_length_2, double force[NDIM])
+double drand()
 {
-    double G = 6.67300E-11;
-    double rx,ry,rz,d2,f;
-
-    rx = r1[0] - r2[0];
-    ry = r1[1] - r2[1];
-    rz = r1[2] - r2[2];
-
-    d2 = pow(rx,2) + pow(ry,2) + pow(rz,2);
-
-    f = - G*m1*m2 / pow(d2+softening_length_2,1.5);
-
-    force[0] =  f * rx;
-    force[1] =  f * ry;
-    force[2] =  f * rz;
+    return (double)rand() / RAND_MAX;
 }
 
 void
-sum_gravitationnal_force(int nparticule, int iparticule,
-    double* m, double* r, double softening_length_2, double sum_force[NDIM])
+init_particules(size_t n, vector<Particule>& particules)
 {
-    int iother;
-    double m_particule;
-    double r_particule[NDIM], r_other[NDIM];
-    double force[NDIM];
+    double mass,x,y,z;
 
-    m_particule = m[iparticule];
-    r_particule[0] = r[NDIM*iparticule];
-    r_particule[1] = r[NDIM*iparticule+1];
-    r_particule[2] = r[NDIM*iparticule+2];
+    particules.clear();
 
-    sum_force[0] = 0.;
-    sum_force[1] = 0.;
-    sum_force[2] = 0.;
+    for (size_t i = 0 ; i < n ; ++i) {
+        mass = drand();
+        x = drand();
+        y = drand();
+        z = drand();
+        Particule p(mass, x, y, z, i);
+        particules.push_back(p);
+    }
+}
 
-    for (iother=0 ; iother < nparticule ; iother++) {
+void
+save_positions(vector<Particule>& particules, size_t itime)
+{
+    ostringstream filename;
+    filename << "pos" << itime << ".txt";
 
-        if (iother==iparticule) continue;
+    ofstream f;
+    f.open(filename.str().c_str());
+    for (vector<Particule>::iterator 
+            it  = particules.begin() ;
+            it != particules.end() ;
+            it++)
+    {
+        f << it->x() << " "
+          << it->y() << " "
+          << it->z() << endl;
+    }
+    f.close();
+}
 
-        r_other[0] = r[NDIM*iother];
-        r_other[1] = r[NDIM*iother+1];
-        r_other[2] = r[NDIM*iother+2];
+Particule::Particule(double mass, double x, double y, double z, size_t idx):
+    m_idx(idx),
+    m_mass(mass),
+    m_x(x),
+    m_y(y),
+    m_z(z),
+    m_fx(0.),
+    m_fy(0.),
+    m_fz(0.)
+{
+}
 
-        gravitationnal_force(m_particule,m[iother], 
-            r_particule,r_other, softening_length_2,force);
+void
+Particule::update_position(double delta_t)
+{
+    m_x += delta_t * m_fx / m_mass;
+    m_y += delta_t * m_fy / m_mass;
+    m_z += delta_t * m_fz / m_mass;
+}
 
-        sum_force[0] += force[0];
-        sum_force[1] += force[1];
-        sum_force[2] += force[2];
+/* Gravitationnal force acting on part due to other.  */
+void
+gravitationnal_force(Particule other, Particule& part, double sl2)
+{
+    double rx = part.x() - other.x();
+    double ry = part.y() - other.y();
+    double rz = part.z() - other.z();
+
+    double d2 = pow(rx,2) + pow(ry,2) + pow(rz,2);
+
+    double f = - G * part.mass() * other.mass()
+                   / pow(d2 + sl2, 1.5);
+
+    part.fx() += f * rx;
+    part.fy() += f * ry;
+    part.fz() += f * rz;
+}
+
+void
+sum_gravitationnal_force(vector<Particule>& particules,
+                         Particule& particule, double sl2)
+{
+    particule.fx() = 0.;
+    particule.fy() = 0.;
+    particule.fz() = 0.;
+
+    for (vector<Particule>::iterator 
+            other_it  = particules.begin() ;
+            other_it != particules.end() ;
+            other_it++)
+    {
+        if (other_it->idx() == particule.idx()) continue;
+
+        gravitationnal_force(*other_it, particule, sl2);
+    }
+}
+
+void
+time_step(vector<Particule>& particules, double delta_t, double sl2)
+{
+    for (vector<Particule>::iterator 
+            it  = particules.begin() ;
+            it != particules.end() ;
+            it++)
+    {
+        sum_gravitationnal_force(particules, *it, sl2);
+        it->update_position(delta_t);
     }
 }
