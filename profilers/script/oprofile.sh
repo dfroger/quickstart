@@ -1,14 +1,14 @@
-source common.sh
+source $(dirname $0)/common.sh
 
 g++ -O2 -fno-omit-frame-pointer -c src/main.cxx
 g++ -O2 -fno-omit-frame-pointer -c src/nbody.cxx
 g++ -O2 -fno-omit-frame-pointer -o profme main.o nbody.o
 
-perf record -g ./profme $NPARTICULES $NTIMES
-perf report --stdio > perf-report.txt
+operf ./profme $NPARTICULES $NTIMES
 
-mv profme perf.data perf-report.txt $RESULT_DIR
-rm *.o
+opreport > oprofile.txt
+
+mv oprofile_data oprofile.txt $RESULT_DIR
 
 echo
 echo "See files in $RESULT_DIR/"

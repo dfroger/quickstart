@@ -1,0 +1,17 @@
+src:
+    Contains C++ source of code to profile
+
+input:
+    Contains command line argument values to run code.
+    Code is run as: 
+        ./profme `cat input/nparticules` `cat input/ntimes`
+
+script:
+    Contains bash script to run profiler:
+        - compile source code
+        - run and profile code
+        - create profiler output files
+
+Profiler results are writter in out/<script-name>/
+
+All the work is done in the current working directory.

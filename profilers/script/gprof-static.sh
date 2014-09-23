@@ -1,4 +1,4 @@
-source common.sh
+source $(dirname $0)/common.sh
 
 g++ -O2 -pg -c src/main.cxx
 g++ -O2 -pg -c src/nbody.cxx
