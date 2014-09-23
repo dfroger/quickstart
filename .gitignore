@@ -1,4 +1,11 @@
+.*.swp
+*~
+
+*.o
+
 build/
 
+waf
 .lock-waf*
 .waf-*
+
