@@ -9,6 +9,3 @@ operf ./profme $NPARTICULES $NTIMES
 opreport > oprofile.txt
 opgprof
 gprof profme gmon.out > gprof-compatible.txt
-
-echo
-echo "See files in $RESULT_DIR/"
