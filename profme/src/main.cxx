@@ -25,7 +25,7 @@ int main(int argc, char** argv)
         time_step(particules, delta_t, softening_length_2);
         if (itime % onepct == 0) {
             cout << itime / onepct  << " %" << endl;
-            save_positions(particules, itime);
+            //save_positions(particules, itime);
         }
     }
 
