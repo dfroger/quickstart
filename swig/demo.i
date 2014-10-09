@@ -5,4 +5,10 @@
 #include "a.hpp"
 %}
 
+%include "std_vector.i"
+
+namespace std {
+    %template(vector_int) vector<int>; 
+}
+
 %include "a.hpp"

@@ -1,5 +1,5 @@
 #include "a.hpp"
 
-double foo(double a, double b) {
-    return a*b;
+double foo(const vector<int>& v) {
+    return 1;
 }
