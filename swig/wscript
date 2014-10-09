@@ -21,7 +21,7 @@ def build(bld):
     bld(features = 'cxx cxxshlib',
         source = 'a.cpp',
         target = 'demo',
-	includes = '.',
+        includes = '.',
         export_includes = '.', vnum = '1.2.3', name = 'demo')
 
     bld(features = 'cxx cxxshlib pyext',
@@ -30,4 +30,6 @@ def build(bld):
         swig_flags = '-c++ -python -Wall',
         includes = '.',
         vnum = '1.2.3',
-        use  = 'demo')
+        use  = 'demo',
+        rpath = ['$ORIGIN', ],
+        )
