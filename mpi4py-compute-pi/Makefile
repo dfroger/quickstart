@@ -10,13 +10,13 @@ help:
 	mpicc -g -c $<
 
 main: main.o compute_pi.o
-	mpicc -g -o $@ $^
+	mpicc -Wl,-rpath,/Users/froger/miniconda/pkgs/mpich-3.1.3-2/lib -g -o $@ $^
 
 ext: compute_pi.h compute_pi.c compute_pi.i setup.py
 	python setup.py build_ext --inplace
 
 clean:
-	@rm -rf build/ main *.o compute_pi_wrap.c compute_pi.py \
+	rm -rf build/ main *.o compute_pi_wrap.c compute_pi.py \
 			_compute_pi.so *.pyc
 
 notebook:

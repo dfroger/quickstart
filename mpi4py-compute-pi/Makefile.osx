@@ -1,0 +1,19 @@
+CONDA_ENV=testmpi4py
+CONDA_LIB_DIR=/Users/froger/miniconda/envs/$(CONDA_ENV)/lib
+
+main: main.o compute_pi.o
+	mpicc -Wl,-rpath,/Users/froger/miniconda/pkgs/mpich-3.1.3-2/lib -g -o $@ $^
+	install_name_tool -change libmpi.12.dylib $(CONDA_LIB_DIR)/libmpi.12.dylib  main
+	install_name_tool -change  libpmpi.12.dylib $(CONDA_LIB_DIR)/libpmpi.12.dylib main
+
+%.o: %.c
+	mpicc -g -c $<
+
+ext: compute_pi.h compute_pi.c compute_pi.i setup.py
+	CC=mpicc python setup.py build_ext --inplace
+	install_name_tool -change libmpi.12.dylib $(CONDA_LIB_DIR)/libmpi.12.dylib _compute_pi.so
+	install_name_tool -change  libpmpi.12.dylib $(CONDA_LIB_DIR)/libpmpi.12.dylib _compute_pi.so
+
+clean:
+	rm -rf build/ main *.o compute_pi_wrap.c compute_pi.py \
+			_compute_pi.so *.pyc
