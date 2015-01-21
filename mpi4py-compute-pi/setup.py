@@ -14,8 +14,9 @@ mpi_lib_dir = os.path.join(mpi_dir, 'lib')
 
 compute_pi = Extension('_compute_pi',
    sources = ['compute_pi.i', 'compute_pi.c'],
-   libraries = ['mpich','opa','mpl','rt','pthread'],
-   include_dirs = [mpi_inc, mpi4py_inc],
+   #libraries = ['mpich','opa','mpl','rt','pthread'],
+   libraries = ['mpich',],
+   include_dirs = [mpi_inc_dir, mpi4py_inc],
    library_dirs = [mpi_lib_dir],
    runtime_library_dirs = [mpi_lib_dir],
    swig_opts=['-I' + mpi4py_inc],
