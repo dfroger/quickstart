@@ -1,0 +1,12 @@
+conda create -n itk cmake itk
+source activate itk
+hash -r
+
+ENV_PATH=$(conda info -e | grep '*' | tr -s ' ' | cut -d" " -f3)
+
+mkdir build
+cd build
+
+cmake -DCMAKE_INSTALL_PREFIX=$PWD/../install -DCMAKE_PREFIX_PATH=$ENV_PATH ..
+make
+make install
