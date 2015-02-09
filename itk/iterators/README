@@ -1,0 +1,10 @@
+conda create -n itk cmake itk
+source activate itk
+hash -r
+
+mkdir build; cd build
+
+cmake -DCMAKE_PREFIX_PATH=$(conda info -e | grep '*' | tr -s ' ' | cut -d" " -f3) ..
+make
+
+./iterators
