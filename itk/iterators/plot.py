@@ -30,7 +30,9 @@ assert c_pointer_size == itk_iterators_size
 print c_pointer_size, c_pointer_seconds
 print itk_iterators_size, itk_iterators_seconds
 
-plot(c_pointer_size, c_pointer_seconds, 'r-', label='C pointers')
-plot(itk_iterators_size, itk_iterators_seconds, 'b-', label='ITK iterators')
+plot(c_pointer_size, c_pointer_seconds, 'ro-', label='C pointers')
+plot(itk_iterators_size, itk_iterators_seconds, 'bo-', label='ITK iterators')
+xlabel('Image size')
+ylabel('Execution time (seconds)')
 legend()
 savefig('times.png')
