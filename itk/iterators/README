@@ -1,11 +1,18 @@
-conda create -n itk cmake itk
-source activate itk
-hash -r
+Install ITK and CMake:
 
-mkdir build; cd build
+    conda create -c https://conda.binstar.org/dfroger -n itk cmake itk
+    source activate itk
+    hash -r
 
-cmake -DCMAKE_PREFIX_PATH=$(conda info -e | grep '*' | tr -s ' ' | cut -d" " -f3) ..
-make
+Build benchmark:
 
-bash ../run.sh
-python ../plot.py
+    mkdir build; cd build
+    cmake -DCMAKE_PREFIX_PATH=$(conda info -e | grep '*' | tr -s ' ' | cut -d" " -f3) ..
+    make
+
+Run and plot benchmark:
+
+    bash ../run.sh
+    python ../plot.py
+
+![alt tag](https://raw.githubusercontent.com/dfroger/quickstart/master/itk/iterators/times.png)
