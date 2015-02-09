@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NITER=100
+NITER=1000
 VERBOSE=0
 
 rm -f times.txt

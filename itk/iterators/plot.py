@@ -3,7 +3,6 @@ import matplotlib
 matplotlib.use('Agg')
 from pylab import *
 
-
 c_pointer_size = []
 c_pointer_seconds = []
 
@@ -26,9 +25,6 @@ with open('times.txt') as f:
             raise ValueError, "No such method: %r" % method
 
 assert c_pointer_size == itk_iterators_size
-
-print c_pointer_size, c_pointer_seconds
-print itk_iterators_size, itk_iterators_seconds
 
 plot(c_pointer_size, c_pointer_seconds, 'ro-', label='C pointers')
 plot(itk_iterators_size, itk_iterators_seconds, 'bo-', label='ITK iterators')
