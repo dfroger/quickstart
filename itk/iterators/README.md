@@ -1,6 +1,7 @@
-Install ITK and CMake:
+Install ITK and other tools:
 
-    conda create -c https://conda.binstar.org/dfroger -n itk cmake itk
+    conda create -c https://conda.binstar.org/dfroger -n itk \
+        itk cmake python=2 matplotlib
     source activate itk
     hash -r
 
