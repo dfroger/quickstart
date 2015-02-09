@@ -15,4 +15,4 @@ Run and plot benchmark:
     bash ../run.sh
     python ../plot.py
 
-![alt tag](https://raw.githubusercontent.com/dfroger/quickstart/master/itk/iterators/times.png)
+![](https://raw.github.com/dfroger/quickstart/master/itk/iterators/times.png)
