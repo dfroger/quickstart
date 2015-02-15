@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# Spam documentation build configuration file, created by
-# sphinx-quickstart on Sat Feb 14 14:37:52 2015.
+# spam documentation build configuration file, created by
+# sphinx-quickstart on Sun Feb 15 12:41:01 2015.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Spam'
+project = 'spam'
 copyright = '2015, David Froger'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -70,7 +70,7 @@ release = '0.0.0'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = []
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -179,7 +179,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Spamdoc'
+htmlhelp_basename = 'spamdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -199,7 +199,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'Spam.tex', 'Spam Documentation',
+  ('index', 'spam.tex', 'spam Documentation',
    'David Froger', 'manual'),
 ]
 
@@ -229,7 +229,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'spam', 'Spam Documentation',
+    ('index', 'spam', 'spam Documentation',
      ['David Froger'], 1)
 ]
 
@@ -243,8 +243,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'Spam', 'Spam Documentation',
-   'David Froger', 'Spam', 'One line description of project.',
+  ('index', 'spam', 'spam Documentation',
+   'David Froger', 'spam', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -260,5 +260,9 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
 
-breathe_projects = {"spam": "../doxyxml/xml"}
+breathe_projects = {"spam": "../../doxyxml/xml"}
 breathe_default_project = "spam"
+
+breathe_domain_by_extension = {
+        'hxx': 'cpp'
+    }
