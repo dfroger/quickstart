@@ -264,5 +264,6 @@ breathe_projects = {"spam": "../../doxyxml/xml"}
 breathe_default_project = "spam"
 
 breathe_domain_by_extension = {
-        'hxx': 'cpp'
+        'hxx': 'cpp',
+        'cxx': 'cpp',
     }
