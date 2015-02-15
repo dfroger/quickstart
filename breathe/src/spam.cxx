@@ -1,4 +1,4 @@
-#include "spam/spam.hxx"
+#include "spam.hxx"
 
 namespace Spam {
     int foo(int a, int b)
