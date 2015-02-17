@@ -5,3 +5,6 @@ write: write.cxx
 
 read: read.cxx
 	g++ -o $@ $< -lhdf5_cpp -lhdf5
+
+clean:
+	rm -f write read *.o
