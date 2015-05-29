@@ -1,6 +1,6 @@
 Install dependencies:
 
-    conda create -n vtk vtk ipython-notebook==3.1.0
+    conda create -n vtk vtk ipython-notebook==3.1.0 numpy matplotlib
 
 Activate conda environnement:
 
