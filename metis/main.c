@@ -8,7 +8,7 @@
 // Number of elements in the mesh (18 triangles).
 #define NE 18
 
-// Number of nodes in the mesh (15 points).
+// Number of nodes in the mesh (16 points).
 #define NN 16
 
 int main()
@@ -21,7 +21,7 @@ int main()
     // Number of elements in the mesh (18 triangles).
     idx_t ne = NE;
 
-    // Number of nodes in the mesh (15 points).
+    // Number of nodes in the mesh (16 points).
     idx_t nn = NN;
 
     // Indices for eind.
