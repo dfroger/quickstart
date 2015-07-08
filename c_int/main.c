@@ -2,6 +2,16 @@
 
 #define PRINT_SIZE_OF(type) printf("%10s: %lu byte(s)\n", #type, sizeof(type));
 
+#ifndef _GKLIB_H_
+#ifdef COMPILER_MSC
+#include <limits.h>
+typedef __int32 int32_t;
+typedef __int64 int64_t;
+#else
+#include <inttypes.h>
+#endif
+#endif
+
 int main()
 {
     PRINT_SIZE_OF(char);
@@ -9,4 +19,6 @@ int main()
     PRINT_SIZE_OF(int);
     PRINT_SIZE_OF(long);
     PRINT_SIZE_OF(long long);
+    PRINT_SIZE_OF(int32_t);
+    PRINT_SIZE_OF(int64_t);
 }
