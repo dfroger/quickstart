@@ -90,20 +90,20 @@ int main() {
         break;
     }
 
-    printf("objval: %lu\n", objval);
+    printf("objval: %"PRId64"\n", objval);
 
     printf("epart: ");
     idx_t i;
     for (i= 0 ; i < ne ; i++)
-        printf("%lu ", epart[i]);
+        printf("%"PRId64" ", epart[i]);
     printf("\n");
 
     printf("npart: ");
     for (i= 0 ; i < nn ; i++)
-        printf("%lu ", npart[i]);
+        printf("%"PRId64" ", npart[i]);
     printf("\n");
 
-    printf("%lu\n", sizeof(idx_t));
+    printf("%"PRId64"\n", sizeof(idx_t));
 
     return 0;
 }
