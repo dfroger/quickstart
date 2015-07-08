@@ -103,7 +103,7 @@ int main() {
         printf("%"PRId64" ", npart[i]);
     printf("\n");
 
-    printf("%"PRId64"\n", sizeof(idx_t));
+    printf("%lu\n", sizeof(idx_t));
 
     return 0;
 }
