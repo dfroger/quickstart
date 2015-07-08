@@ -11,6 +11,18 @@
 // Number of nodes in the mesh (16 points).
 #define NN 16
 
+// All node have equal weight.
+#define VWGT NULL
+
+// All node have equal size.
+#define VSIZE NULL
+
+// All partition have equal weight.
+#define TPWGTS NULL
+
+// No options.
+#define OPTIONS NULL
+
 int main()
 {
 
@@ -39,20 +51,8 @@ int main()
                         5, 8, 9,  6, 9,10,  7,10,11,
                         9,12,13, 10,13,14, 11,14,15};
 
-    // All node have equal weight.
-    idx_t *vwgt = NULL;
-
-    // All node have equal size.
-    idx_t *vsize = NULL;
-
     // Number of partition.
     idx_t nparts = 3;
-
-    // All partition have equal weight.
-    real_t *tpwgts = NULL; 
-
-    // No options.
-    idx_t *options = NULL;
 
     // =====================================
     // Allocate Metis outputs.
@@ -69,8 +69,8 @@ int main()
     // Call Metis function.
     // =====================================
 
-    int err = METIS_PartMeshNodal(&ne, &nn, eptr, eind, vwgt, vsize,
-                                  &nparts, tpwgts, options, &objval,
+    int err = METIS_PartMeshNodal(&ne, &nn, eptr, eind, VWGT, VSIZE,
+                                  &nparts, TPWGTS, OPTIONS, &objval,
                                   epart, npart);
 
     // =====================================
