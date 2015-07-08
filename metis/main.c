@@ -2,26 +2,26 @@
 
 #include "metis.h"
 
-// See this mesh here:
+// See the mesh here:
 // https://github.com/dfroger/metis4py/blob/master/part_mesh_nodal.ipynb
 
-
-// Number of element in the mesh (18 triangles)
+// Number of elements in the mesh (18 triangles).
 #define NE 18
 
-// Number of node in the mesh (15 points)
+// Number of nodes in the mesh (15 points).
 #define NN 16
 
-int main() {
+int main()
+{
 
     // =====================================
-    // Inputs
+    // Set Metis inputs values.
     // =====================================
 
-    // Number of element in the mesh (18 triangles)
+    // Number of elements in the mesh (18 triangles).
     idx_t ne = NE;
 
-    // Number of node in the mesh (15 points).
+    // Number of nodes in the mesh (15 points).
     idx_t nn = NN;
 
     // Indices for eind.
@@ -32,12 +32,12 @@ int main() {
                         48,51,54};
 
     // Triangles point indices.
-    idx_t eind[NE*3] = { 0, 4, 1,  1, 5, 2,  2, 6, 3,
-                         4, 8, 5,  5, 9, 6,  6,10, 7,
-                         8, 9,12,  9,10,13, 10,11,14,
-                         1, 4, 5,  2, 5, 6,  3, 6, 7,
-                         5, 8, 9,  6, 9,10,  7,10,11,
-                         9,12,13, 10,13,14, 11,14,15};
+    idx_t eind[NE*3] = {0, 4, 1,  1, 5, 2,  2, 6, 3,
+                        4, 8, 5,  5, 9, 6,  6,10, 7,
+                        8, 9,12,  9,10,13, 10,11,14,
+                        1, 4, 5,  2, 5, 6,  3, 6, 7,
+                        5, 8, 9,  6, 9,10,  7,10,11,
+                        9,12,13, 10,13,14, 11,14,15};
 
     // All node have equal weight.
     idx_t *vwgt = NULL;
@@ -55,7 +55,7 @@ int main() {
     idx_t *options = NULL;
 
     // =====================================
-    // Outputs
+    // Allocate Metis outputs.
     // =====================================
 
     // Total communication volume.
@@ -65,8 +65,17 @@ int main() {
     idx_t epart[NE];
     idx_t npart[NN];
 
+    // =====================================
+    // Call Metis function.
+    // =====================================
+
     int err = METIS_PartMeshNodal(&ne, &nn, eptr, eind, vwgt, vsize,
-            &nparts, tpwgts, options, &objval, epart, npart);
+                                  &nparts, tpwgts, options, &objval,
+                                  epart, npart);
+
+    // =====================================
+    // Print Metis results.
+    // =====================================
 
     switch (err)
     {
