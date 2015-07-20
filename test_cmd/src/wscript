@@ -1,0 +1,7 @@
+def build(bld):
+    bld.shlib(
+        source = 'greet.cxx',
+        target = 'greet',
+        export_includes = '.',
+        name = 'GREET_LIB',
+    )

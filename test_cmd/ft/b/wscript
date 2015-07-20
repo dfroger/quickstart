@@ -1,0 +1,16 @@
+def build(bld):
+    bld.program(
+        source = 'helloname.cxx',
+        target = 'helloname',
+        use = 'GREET_LIB',
+        name = 'HELLONAME_EXE',
+        rpath = ['$ORIGIN/../../src', ],
+    )
+
+def test(ctx):
+    ctx(
+        rule = './${SRC} David',
+        source = 'helloname',
+        use = 'HELLONAME_EXE',
+    )
+
