@@ -1,2 +1,2 @@
 Print available options
-cmake -LAH
+cmake -LAH ..
