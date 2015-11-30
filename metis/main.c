@@ -20,9 +20,6 @@
 // All partition have equal weight.
 #define TPWGTS NULL
 
-// No options.
-#define OPTIONS NULL
-
 int main()
 {
 
@@ -54,6 +51,11 @@ int main()
     // Number of partition.
     idx_t nparts = 3;
 
+    // Options.
+    idx_t options[METIS_NOPTIONS];
+    METIS_SetDefaultOptions(options);
+    options[METIS_OPTION_SEED] = 0;
+
     // =====================================
     // Allocate Metis outputs.
     // =====================================
@@ -70,7 +72,7 @@ int main()
     // =====================================
 
     int err = METIS_PartMeshNodal(&ne, &nn, eptr, eind, VWGT, VSIZE,
-                                  &nparts, TPWGTS, OPTIONS, &objval,
+                                  &nparts, TPWGTS, options, &objval,
                                   epart, npart);
 
     // =====================================

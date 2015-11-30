@@ -1,0 +1,16 @@
+def build(bld):
+    bld.program(
+        source = 'helloworld.cxx',
+        target = 'helloworld',
+        use = 'GREET_LIB',
+        name = 'HELLOWORLD_EXE',
+        rpath = ['$ORIGIN/../../src', ],
+    )
+
+def test(ctx):
+    print "a: test"
+    ctx(
+        rule = './${SRC}',
+        source = 'helloworld',
+        use = 'HELLOWORLD_EXE',
+    )

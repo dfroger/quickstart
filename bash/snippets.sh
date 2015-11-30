@@ -13,3 +13,4 @@ else
     echo "The file is sourced."
 fi
 
+HERE=$(pyrealpath $(dirname $0)/..)
