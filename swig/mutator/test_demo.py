@@ -37,11 +37,21 @@ class TestFoo(unittest.TestCase):
         bar.sb = True
         self.assertTrue(foo.gbar.sb)
 
-    def test_vector(self):
+    def test_vector_getter(self):
         foo = demo.Foo(42)
+        v = foo.gv
+        self.assertEqual(len(v), 3)
+        self.assertEqual(v[0], 1)
+        self.assertEqual(v[1], 2)
+        self.assertEqual(v[2], 3)
+
+    def test_vector_getter_modif(self):
+        foo = demo.Foo(42)
+        v = foo.gv
+        v[1] = 33
         self.assertEqual(len(foo.gv), 3)
         self.assertEqual(foo.gv[0], 1)
-        self.assertEqual(foo.gv[1], 2)
+        self.assertEqual(foo.gv[1], 33)
         self.assertEqual(foo.gv[2], 3)
 
 
