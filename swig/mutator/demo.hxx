@@ -16,11 +16,8 @@ class Bar
             m_sb(sb)
         {};
 
-        const bool sb() const { return m_sb;};
-        void set_sb(const bool sb) { m_sb = sb; };
-
     private:
-        bool m_sb;
+        WITH_SETTER(bool, sb)
 };
 
 class Foo
@@ -37,24 +34,12 @@ class Foo
             m_gv.push_back(3);
         }
 
-        const int si() const { return m_si; }
-        void set_si(const int si) { m_si = si; m_gi = si*2; }
-
-        const int gi() const { return m_gi; }
-
-        const Bar& sbar() const { return m_sbar; }
-        void set_sbar(const Bar& sbar) { m_sbar = sbar; }
-
-        const Bar& gbar() const { return m_gbar; }
-
-        const vector<int>& gv() const { return m_gv; }
-
     private:
-        int m_si;
-        int m_gi;
-        Bar m_sbar;
-        Bar m_gbar;
-        vector<int> m_gv;
+        WITH_SETTER(int, si)
+        WITH_GETTER(int, gi)
+        WITH_SETTER_REF(Bar, sbar)
+        WITH_GETTER_REF(Bar, gbar)
+        WITH_GETTER_REF(vector<int>, gv)
 };
 
 #endif
