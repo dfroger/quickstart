@@ -5,4 +5,4 @@ test:
 	python test_demo.py
 
 clean:
-	rm -rf build/ demo.py _demo.so demo_wrap.cpp
+	rm -rf build/ demo.py _demo.so demo_wrap.cpp demo.pyc

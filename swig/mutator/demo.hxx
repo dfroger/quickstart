@@ -1,12 +1,11 @@
 #ifndef DEMO_HXX_INCLUDED
 #define DEMO_HXX_INCLUDED
 
+#include <vector>
 #include "mutator.hpp"
 
 // todo:
-//    - int, double, bool, string
-//    - map, vector
-//    - classes
+//    - string
 
 using namespace std;
 
@@ -33,6 +32,9 @@ class Foo
             m_sbar(false),
             m_gbar(false)
         {
+            m_gv.push_back(1);
+            m_gv.push_back(2);
+            m_gv.push_back(3);
         }
 
         const int si() const { return m_si; }
@@ -45,11 +47,14 @@ class Foo
 
         const Bar& gbar() const { return m_gbar; }
 
+        const vector<int>& gv() const { return m_gv; }
+
     private:
         int m_si;
         int m_gi;
         Bar m_sbar;
         Bar m_gbar;
+        vector<int> m_gv;
 };
 
 #endif
