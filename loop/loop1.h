@@ -13,7 +13,10 @@ create1(XYZ **xyz, size_t size);
 void
 destroy1(XYZ *xyz);
 
-double
-compute1(XYZ *xyz, size_t size);
+void
+compute1(XYZ *xyz, size_t size, double *x, double *time_spent);
+
+void
+setvalues1(XYZ *xyz, size_t size);
 
 #endif

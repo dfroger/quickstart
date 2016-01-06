@@ -7,7 +7,10 @@ create0(double **vx, double **vy, double **vz, size_t size);
 void
 destroy0(double *vx, double *vy, double *vz);
 
-double
-compute0(double *vx, double *vy, double *vz, size_t size);
+void
+compute0(double *vx, double *vy, double *vz, size_t size, double *x, double *time_spent);
+
+void
+setvalues0(double *vx, double *vy, double *vz, size_t size);
 
 #endif

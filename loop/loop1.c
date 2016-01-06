@@ -9,13 +9,16 @@ void
 create1(XYZ **xyz, size_t size)
 {
     *xyz = malloc(sizeof(XYZ)*size);
+}
 
+void
+setvalues1(XYZ *xyz, size_t size)
+{
     size_t i;
-    srand(0);
     for (i=0 ; i<size ; i++) {
-        (*xyz)[i].x = random_number();
-        (*xyz)[i].y = random_number();
-        (*xyz)[i].z = random_number();
+        xyz[i].x = random_number();
+        xyz[i].y = random_number();
+        xyz[i].z = random_number();
     }
 }
 
@@ -25,23 +28,17 @@ destroy1(XYZ *xyz)
     free(xyz);
 }
 
-double
-compute1(XYZ *xyz, size_t size)
+void
+compute1(XYZ *xyz, size_t size, double *x, double *time_spent)
 {
     clock_t begin, end;
-    double time_spent;
     begin = clock();
-
-    double x = 0;
 
     size_t i;
     for (i=0 ; i<size ; i++) {
-        x += (xyz[i].x + xyz[i].y) * xyz[i].z;
+        *x += (xyz[i].x + xyz[i].y) * xyz[i].z;
     }
 
     end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("compute1: %.4g\n", time_spent);
-
-    return x;
+    *time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 }

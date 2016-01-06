@@ -11,13 +11,16 @@ create0(double **vx, double **vy, double **vz, size_t size)
     *vx = malloc(sizeof(double)*size);
     *vy = malloc(sizeof(double)*size);
     *vz = malloc(sizeof(double)*size);
+}
 
+void
+setvalues0(double *vx, double *vy, double *vz, size_t size)
+{
     size_t i;
-    srand(0);
     for (i=0 ; i<size ; i++) {
-        (*vx)[i] = random_number();
-        (*vy)[i] = random_number();
-        (*vz)[i] = random_number();
+        vx[i] = random_number();
+        vy[i] = random_number();
+        vz[i] = random_number();
     }
 }
 
@@ -29,23 +32,17 @@ destroy0(double *vx, double *vy, double *vz)
     free(vz);
 }
 
-double
-compute0(double *vx, double *vy, double *vz, size_t size)
+void
+compute0(double *vx, double *vy, double *vz, size_t size, double *x, double *time_spent)
 {
     clock_t begin, end;
-    double time_spent;
     begin = clock();
-
-    double x = 0;
 
     size_t i;
     for (i=0 ; i<size ; i++) {
-        x += (vx[i] + vy[i]) * vz[i];
+        *x += (vx[i] + vy[i]) * vz[i];
     }
 
     end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("compute0: %.4g\n", time_spent);
-
-    return x;
+    *time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
 }
