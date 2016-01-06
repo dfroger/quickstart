@@ -8,7 +8,7 @@ typedef struct {
 } XYZ;
 
 void
-create1(XYZ *xyz, size_t size);
+create1(XYZ **xyz, size_t size);
 
 void
 destroy1(XYZ *xyz);
