@@ -14,6 +14,14 @@ create0(double **vx, double **vy, double **vz, size_t size)
 }
 
 void
+destroy0(double *vx, double *vy, double *vz)
+{
+    free(vx);
+    free(vy);
+    free(vz);
+}
+
+void
 setvalues0(double *vx, double *vy, double *vz, size_t size)
 {
     size_t i;
@@ -22,14 +30,6 @@ setvalues0(double *vx, double *vy, double *vz, size_t size)
         vy[i] = random_number();
         vz[i] = random_number();
     }
-}
-
-void
-destroy0(double *vx, double *vy, double *vz)
-{
-    free(vx);
-    free(vy);
-    free(vz);
 }
 
 void

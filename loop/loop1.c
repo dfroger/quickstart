@@ -12,6 +12,12 @@ create1(XYZ **xyz, size_t size)
 }
 
 void
+destroy1(XYZ *xyz)
+{
+    free(xyz);
+}
+
+void
 setvalues1(XYZ *xyz, size_t size)
 {
     size_t i;
@@ -23,20 +29,15 @@ setvalues1(XYZ *xyz, size_t size)
 }
 
 void
-destroy1(XYZ *xyz)
-{
-    free(xyz);
-}
-
-void
 compute1(XYZ *xyz, size_t size, double *x, double *time_spent)
 {
     clock_t begin, end;
     begin = clock();
 
     size_t i;
-    for (i=0 ; i<size ; i++) {
-        *x += (xyz[i].x + xyz[i].y) * xyz[i].z;
+    XYZ* it;
+    for (it = xyz ; it < xyz+size ; ++it) {
+        *x += (it->x + it->y) * it->z;
     }
 
     end = clock();

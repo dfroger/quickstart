@@ -53,7 +53,7 @@ int main(int argc, char** argv)
         exit(1);
     }
 
-    printf("%d %.6g %.6g\n", nloops, time_spent0, time_spent1);
+    printf("%d %.6g %.6g\n", size, time_spent0, time_spent1);
 
     return 0;
 }
