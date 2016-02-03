@@ -5,5 +5,3 @@ do
     echo $n
     ./main $n >> times.txt
 done
-
-python plot.py

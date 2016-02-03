@@ -40,7 +40,7 @@ compute0(double *vx, double *vy, double *vz, size_t size, double *x, double *tim
 
     size_t i;
     for (i=0 ; i<size ; i++) {
-        *x += (vx[i] + vy[i]) * vz[i];
+        *x += vx[i] + vy[i] + vz[i];
     }
 
     end = clock();
