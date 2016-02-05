@@ -8,6 +8,9 @@
 
 #include <stdio.h>
 
+// On GNU/Linux, required for the sleep function (David Froger 05/02/2016)
+#include <unistd.h>
+
 const int N = 16; 
 const int blocksize = 16; 
 
