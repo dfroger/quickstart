@@ -300,7 +300,6 @@ extensions += [
 
 slide_title = 'Example project'
 slide_theme = 'single-level'
-#slide_theme = 'slides'
 slide_levels = 3
 slide_link_html_to_slides = True
 slide_link_to_html = True

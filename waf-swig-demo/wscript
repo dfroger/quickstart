@@ -15,10 +15,10 @@ top = '.'
 out = 'build'
 
 def options(opt):
-	opt.load('g++ python')
+	opt.load('compiler_cxx python')
 
 def configure(conf):
-	conf.load('g++ python')
+	conf.load('compiler_cxx python')
 	conf.check_python_version((2,4,2))
 	conf.check_python_headers()
 

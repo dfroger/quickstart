@@ -13,4 +13,5 @@ else
     echo "The file is sourced."
 fi
 
-HERE=$(pyrealpath $(dirname $0)/..)
+# http://stackoverflow.com/a/246128
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
