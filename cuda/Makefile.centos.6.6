@@ -1,0 +1,11 @@
+# http://docs.nvidia.com/cuda/cuda-getting-started-guide-for-linux/index.html#redhat-installation
+# sudo yum install epel-release
+# wget http://developer.download.nvidia.com/compute/cuda/7.5/Prod/local_installers/cuda-repo-rhel6-7-5-local-7.5-18.x86_64.rpm
+# sudo rpm -i cuda-repo-rhel6-7-5-local-7.5-18.x86_64.rpm
+# sudo yum clean all
+# sudo yum install cuda
+
+NVCC = /usr/local/cuda-7.5/bin/nvcc 
+
+helloworld: hello-world.cu 
+		$(NVCC) hello-world.cu
