@@ -2,5 +2,5 @@
 
 int main()
 {
-    greet();
+    greet_from_dynamic_library();
 }

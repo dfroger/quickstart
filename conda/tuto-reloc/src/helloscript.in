@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "Hello, this is a path hardcoded in a script: PREFIX"

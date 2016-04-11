@@ -1,0 +1,8 @@
+#include <stdio.h>
+#include "greet.h"
+
+void
+greet_from_dynamic_library()
+{
+    printf("Hello, this is a path hardcoded in a dynamic library: PREFIX\n");
+}

@@ -2,31 +2,69 @@
 ifneq ($(wildcard $(PREFIX)),)
     $(info "INFO: Install directory is: $(PREFIX)")
 else
-    $(error "ERROR: Install directory (PREFIX='$(PREFIX)') doest not exits. Use: make PREFIX=/path/to/install/prefix")
+    $(error "WARNING: Install directory (PREFIX='$(PREFIX)') doest not exits. Use: make PREFIX=/path/to/install/prefix")
 endif
 
-all: helloA greet.c helloA helloB
+EXE = helloscript hellostatic hellodynamic
 
-greet.c: greet.c.in
+all: $(EXE)
+
+# ============================================================================
+# Replace PREFIX with actual value
+# ============================================================================
+#
+WITH_PREFIX = helloscript greetstatic.c greetdynamic.c
+
+helloscript: helloscript.in
+	sed s:PREFIX:${PREFIX}: $< > $@
+	chmod +x helloscript
+
+greetstatic.c: greetstatic.c.in
 	sed s:PREFIX:${PREFIX}: $< > $@
 
-helloA: helloA.in
+greetdynamic.c: greetdynamic.c.in
 	sed s:PREFIX:${PREFIX}: $< > $@
-	chmod +x helloA
 
-helloB: helloB.o libgreet.so
-	$(CC) -o $@ helloB.o -L. -lgreet
+# ============================================================================
+# Link with static library
+# ============================================================================
 
-libgreet.so: greet.o
-	$(CC) -shared -o $@ -Wl,-soname,$(PREFIX)/lib/libgreet.so $<
+greetstatic.o: greetstatic.c
+	$(CC) -I. -c $<
 
-%.o: %.c
+hellostatic.o: hellostatic.c
+	$(CC) -I. -c $<
+
+libgreetstatic.a: greetstatic.o
+	ar rcs $@ $<
+
+hellostatic: hellostatic.o libgreetstatic.a
+	$(CC) -o $@ hellostatic.o -L. -lgreetstatic
+
+# ============================================================================
+# Link with dynamic library
+# ============================================================================
+
+greetdynamic.o: greetdynamic.c
 	$(CC) -I. -fPIC -c $<
 
+hellodynamic.o: hellodynamic.c
+	$(CC) -I. -fPIC -c $<
+
+libgreetdynamic.so: greetdynamic.o
+	$(CC) -shared -o $@ -Wl,-soname,$(PREFIX)/lib/libgreetdynamic.so $<
+
+hellodynamic: hellodynamic.o libgreetdynamic.so
+	$(CC) -o $@ hellodynamic.o -L. -lgreetdynamic
+
+# ============================================================================
+# Clean, install
+# ============================================================================
+
 clean:
-	rm -f *.o *.so helloA helloB
+	rm -f *.o *.a *.so $(WITH_PREFIX) $(EXE)
 
 install: all
 	mkdir -p $(PREFIX)/bin $(PREFIX)/lib
-	cp helloA helloB $(PREFIX)/bin
-	cp libgreet.so $(PREFIX)/lib
+	cp helloscript hellostatic hellodynamic $(PREFIX)/bin
+	cp libgreetdynamic.so $(PREFIX)/lib
