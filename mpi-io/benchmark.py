@@ -53,7 +53,6 @@ def plot(nproc_list):
         for i,size in enumerate(nproc_list):
             times  = pd.read_table('times-{}-{}.txt'.format(prog, size), sep=' ',
                                     names=[prog])
-                                    #names=['read', 'compute', 'write', ])
             times.plot.barh(stacked=True, ax=axes[i],
                             title='{} process'.format(size),
                             legend=True if i==0 else False)
