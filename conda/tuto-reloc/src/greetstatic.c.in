@@ -1,8 +1,0 @@
-#include <stdio.h>
-#include "greet.h"
-
-void
-greet_from_static_library()
-{
-    printf("Hello, this is a path hardcoded in a static library: PREFIX\n");
-}
