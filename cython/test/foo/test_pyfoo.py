@@ -8,7 +8,7 @@ class TestFoo(unittest.TestCase):
         a = 4
         b = 5
         ten = False
-        self.assertEqual(demo.foo.baz(a,b,ten), 22)
+        self.assertEqual(demo.pyfoo.baz(a,b,ten), 22)
 
 if __name__ == '__main__':
     unittest.main()

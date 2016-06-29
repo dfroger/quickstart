@@ -1,1 +1,2 @@
-from .foo import *
+from .foo import foo
+from .foo import pyfoo
