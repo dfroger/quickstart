@@ -4,7 +4,7 @@ ext:
 .PHONY: test
 
 test:
-	PYTHONPATH=. python test/foo/test_foo.py
+	PYTHONPATH=. nosetests
 
 cover:
 	PYTHONPATH=. nosetests --with-coverage --cover-package=demo
