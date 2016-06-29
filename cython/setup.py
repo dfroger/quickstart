@@ -13,8 +13,8 @@ setup(
     author = 'David Froger',
     author_email = 'david.froger@mailoo.org',
     packages = [
-        'geomalgo',
-        'geomalgo.foo',
+        'demo',
+        'demo.foo',
     ],
     ext_modules = cythonize(
         extensions,
