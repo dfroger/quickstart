@@ -8,6 +8,7 @@ test:
 
 cover:
 	PYTHONPATH=. nosetests --with-coverage --cover-package=demo
+	coverage report
 
 clean:
 	rm -rf build/ demo/foo/foo.c demo/foo/*.so
