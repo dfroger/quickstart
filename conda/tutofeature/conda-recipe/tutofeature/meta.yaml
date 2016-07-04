@@ -1,0 +1,14 @@
+package:
+  name: tutofeature
+  version: 0.1.0
+
+source:
+  path: ../..
+
+build:
+  number: 1
+
+about:
+  home: https//github.com/dfroger/tutofeature
+  license: BSD
+  summary: Demo of Conda Features
