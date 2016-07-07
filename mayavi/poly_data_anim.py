@@ -13,10 +13,10 @@ def generate_points(z):
                      (0,1,z), (1,1,z), (2,1,z)], 'd')
 
 @mlab.show
-@mlab.animate(delay=250)
+@mlab.animate(delay=25)
 def anim():
     z = z0
-    velocity = 0.5
+    velocity = 0.02
     while True:
         z += velocity
         if z > 1 or z < -1:
