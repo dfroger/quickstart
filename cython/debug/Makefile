@@ -6,6 +6,3 @@ test:
 
 clean:
 	rm -rf build/ *.so *.c cython_debug/
-
-debug:
-	cygdb . -- --args python main.py

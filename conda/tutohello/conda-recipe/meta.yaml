@@ -1,0 +1,14 @@
+package:
+  name: tutohello
+  version: 0.1.0
+
+source:
+  path: ..
+
+build:
+  number: 0
+
+about:
+  home: https//github.com/dfroger/quickstart
+  license: BSD
+  summary: Demo of Conda package
