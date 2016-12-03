@@ -1,0 +1,9 @@
+# examples.cython
+
+load_module('craftr.lang.cython.*')
+
+project = cython_project(
+  sources = glob(['*.pyx']),
+  cpp = False,
+  in_working_tree = True
+)
