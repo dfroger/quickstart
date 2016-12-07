@@ -1,0 +1,3 @@
+import lost
+
+lost.main()
