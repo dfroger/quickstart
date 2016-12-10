@@ -21,7 +21,7 @@ Clean with:
     make clean
 
 
-## Delated exception
+## Delayed exception
 
 
 See file `delayed.pyx` and `main_delayed.py`.
