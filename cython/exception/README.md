@@ -24,7 +24,7 @@ Clean with:
 ## Delated exception
 
 
-See file `delayted.pyx` and `main_delayted.py`.
+See file `delayed.pyx` and `main_delayed.py`.
 
 If `CTRL-C` is pressed during `C` code execution, signal is ignored, and
 `C` code is not stopped but continue running.
