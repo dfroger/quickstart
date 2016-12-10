@@ -1,13 +1,23 @@
 # examples.cython
 
 import sys
+import os
+
+import cysignals
 
 load_module('craftr.lang.cython.*')
+
+# TODO: package cysignals with craftr
+cysignals_include = os.path.dirname(cysignals.__file__)
 
 project = cython_project(
   sources = glob(['*.pyx']),
   cpp = False,
   in_working_tree = True,
-  include=sys.path,
+  include = sys.path,
+  compile_kwargs = dict(
+      # struct_signals.h need to be found
+      # See also http://cysignals.readthedocs.io/en/latest/#basic-example
+      gcc_compile_additional_flags = ['-I' + cysignals_include]
+  )
 )
-

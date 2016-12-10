@@ -1,3 +1,3 @@
-import delayted
+import delayed
 
-delayted.main()
+delayed.main()
