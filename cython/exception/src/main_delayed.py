@@ -1,0 +1,3 @@
+import delayed
+
+delayed.main()
