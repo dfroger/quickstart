@@ -2,17 +2,17 @@ BEGIN;
 
 CREATE TABLE Orders (OrderID integer, CustomerID integer, OrderDate date);
 
-INSERT INTO Orders VALUES (0, 2, '2016-03-12');
+INSERT INTO Orders VALUES (0, 7, '2016-03-12');
 INSERT INTO Orders VALUES (1, 3, '2016-04-01');
-INSERT INTO Orders VALUES (2, 1, '2016-04-05');
+INSERT INTO Orders VALUES (2, 9, '2016-04-05');
 
 CREATE TABLE Customers (CustomerID integer,
                         CustomerName varchar(20),
                         ContactName varchar(20),
                         Country varchar(20));
 
-INSERT INTO Customers VALUES (0, 'Foo', 'Alice', 'France');
-INSERT INTO Customers VALUES (1, 'Bar', 'Bob', 'Italy');
-INSERT INTO Customers VALUES (2, 'Baz', 'Charlie', 'Italy');
+INSERT INTO Customers VALUES (3, 'Foo', 'Alice', 'France');
+INSERT INTO Customers VALUES (7, 'Bar', 'Bob', 'Italy');
+INSERT INTO Customers VALUES (9, 'Baz', 'Charlie', 'Italy');
 
 COMMIT;
