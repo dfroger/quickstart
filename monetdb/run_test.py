@@ -2,11 +2,8 @@ import os
 import subprocess
 import shutil
 
-try:
-    import pymonetdb
-    import pymonetdb.control as control
-except ImportError:
-    import monetdb.control as control
+import pymonetdb
+import pymonetdb.control
 
 HERE = os.path.dirname(os.path.realpath(__file__))
 
@@ -15,28 +12,48 @@ db = 'demo'
 port = 56789
 user = 'monetdb'
 password = 'monetdb'
+passphrase = 'monetdb'
 table = 'names'
+hostname = 'localhost'
 
 def mdb_daemon(*args):
     subprocess.check_call(['monetdbd', ] + list(args))
 
-# Create database farm
+# Create database farm with remote control
 mdb_daemon('create', farm)
 mdb_daemon('set', 'port={}'.format(port), farm)
+mdb_daemon('set', 'control=yes', farm)
+mdb_daemon('set', 'passphrase={}'.format(passphrase), farm)
 mdb_daemon('start', farm)
 mdb_daemon('get', 'all', farm)
 
+# Create a `demo` database
+ctl = pymonetdb.control.Control(port=port, passphrase=password)
+ctl.create(db)
+ctl.start(db)
+ctl.get(db)
+
+# Create a table
+connection = pymonetdb.connect(username=user, password=password,
+                               hostname=hostname, database=db,
+                               port=port)
+cursor = connection.cursor()
+
+cursor.execute("CREATE TABLE {} (id integer,name varchar(20));".format(table))
+
+# Add rows to table
+cursor.execute("INSERT INTO {} VALUES (0, 'Alice');".format(table))
+cursor.execute("INSERT INTO {} VALUES (1, 'Bob');".format(table))
+
+# Get values
+cursor.execute("SELECT * FROM {};".format(table))
+cursor.fetchall()
+cursor.close()
+
 # Stop farm
+ctl.stop(db)
+ctl.destroy(db)
 mdb_daemon('stop', farm)
 shutil.rmtree(farm)
 
-
-#hostname = 'localhost'
-#passphrase = 'monetdb'
-#unix_socket = None
-
-#database = 'demo'
-
-#c = control.Control(hostname=hostname, port=port, passphrase=passphrase,
-                    #unix_socket=unix_socket)
-#c = pymonetdb.connect(database, hostname=hostname, port=port)
+print('run_test.py completed successfully')
