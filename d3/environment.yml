@@ -1,0 +1,8 @@
+name: d3
+
+channels:
+  - conda-forge
+  - dfroger
+
+dependencies:
+  - yarn
