@@ -5,6 +5,7 @@ Install nodejs:
 
 Install npm packages:
 
+    nmp install --save react react-dom
     npm install --dev webpack babel-loader babel-core babel-preset-es2015 babel-preset-react
     npm install -g webpack
 
